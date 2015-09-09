@@ -1,5 +1,4 @@
-""" A somewhat odd game of battleship that expands upon the battleship game in codeacademy. 
-	Purpose is to practice coding in Python and well, coding in general.
+""" A somewhat odd game of battleship to practice coding in Python and well, coding in general.
 """
 
 
