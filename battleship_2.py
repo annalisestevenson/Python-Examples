@@ -68,8 +68,8 @@ def best_out_of(player, win_state_change):
 def input_check(ship_row, ship_col, player, board):
     while True:
         try:
-            guess_row = int(raw_input("Guess Row:"))
-            guess_col = int(raw_input("Guess Col:"))
+            guess_row = int(raw_input("Guess Row:")) - 1
+            guess_col = int(raw_input("Guess Col:")) - 1
         except ValueError:
             print "Enter a number only."
             continue
@@ -133,3 +133,7 @@ for games in range(3):
             input_check(ship_row_small, ship_col_small, player_two, board_small)
         if total_turns == 6:
             print "Game Over"
+            exit()
+            # for entry in player_one:
+            #     print entry
+            #     print "Wins: %s" % (player_one[entry])
