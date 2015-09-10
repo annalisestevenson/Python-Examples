@@ -68,20 +68,20 @@ def best_out_of(player, win_state_change):
 def input_check(ship_row, ship_col, player, board):
     while True:
         try:
-            guess_row = int(raw_input("Guess Row:")) - 1
-            guess_col = int(raw_input("Guess Col:")) - 1
+            guess_row = int(raw_input("Guess Row:"))
+            guess_col = int(raw_input("Guess Col:"))
         except ValueError:
             print "Enter a number only."
             continue
         else:
             break
-    if guess_row + 1 == ship_row and guess_col + 1 == ship_col:
+    if guess_row == ship_row and guess_col == ship_col:
         win_state_change = 1  # notes that someone has won the current game
         player["wins"] += 1  # add a win to the current player
         print "Congratulations! You sunk my battleship!"
         best_out_of(player, win_state_change)
     else:
-        if player == player_two:
+        if player == player_two:  # check the current player to correlate with the correct board size
             if (guess_row < 0 or guess_row > 2) or (guess_col < 0 or guess_col > 2):
                 print "Oops, that's not even in the ocean."
             elif board[guess_row][guess_col] == "X":
@@ -89,7 +89,7 @@ def input_check(ship_row, ship_col, player, board):
             else:
                 print "You missed my battleship!"
                 board[guess_row][guess_col] = "X"
-        elif player == player_one:
+        elif player == player_one:  # check the current player to correlate with the correct board size
             if (guess_row < 0 or guess_row >= 5) or (guess_col < 0 or guess_col >= 5):
                 print "Oops, that's not even in the ocean."
             elif board[guess_row][guess_col] == "X":
@@ -102,10 +102,12 @@ def input_check(ship_row, ship_col, player, board):
 total_turns = 0
 
 def player_turns(total_turns):
-    if total_turns % 2 == 0:
-        return True
+    if total_turns % 2 == 0:  # alternate between player turns by checking for odd numbers
+        player_turn = player_two
+        return player_turn
     else:
-        return False
+        player_turn = player_one
+        return player_turn
 
 player_one = {
     "name": "Player 1",
@@ -120,13 +122,13 @@ player_two = {
 start_game()
 
 for games in range(3):
-    games += 1
-    for turns in range(6):
+    games += 1  # 3 games total
+    for turns in range(6):  # 6 turns total = 3 turns for each player
         total_turns += 1
-        if player_turns(total_turns) == False:
+        if player_turns(total_turns) == player_one:
             print "It's player Ones's turn"
             input_check(ship_row_large, ship_col_large, player_one, board_large)
-        elif player_turns(total_turns) == True:
+        elif player_turns(total_turns) == player_two:
             print "It's player Two's turn"
             input_check(ship_row_small, ship_col_small, player_two, board_small)
         if total_turns == 6:
