@@ -37,11 +37,11 @@ def show_board(board_one, board_two):   # make the lists look more like a simple
         print " ".join(row)
 
 def random_row(board):  # generate the random ship location (in the list keys)
-    rand_numb = randint(1, len(board[0]))
+    rand_numb = randint(2, len(board[0]))
     return rand_numb
 
 def random_col(board):
-    rand_numb = randint(1, len(board))  # generate the random ship column (in the outer lists)
+    rand_numb = randint(2, len(board))  # generate the random ship column (in the outer lists)
     return rand_numb
 
 def start_game(board_one, board_two):   # each time the players decides to play again, start with a fresh slate
@@ -67,15 +67,15 @@ def start_game(board_one, board_two):   # each time the players decides to play 
         'ship_row_small': ship_row_small
     }
 
-ship_points = start_game(board_large, board_small)   # assign the new ship locations to the new dictionary "ship_points"
+ship_points = start_game(board_large, board_small)  # assign the new ship locations to the new dictionary "ship_points"
 
-def best_out_of(win_state, total_turns=0, player=player_one):
+def best_out_of(win_state, total_turns=0, player=player_one):   # check the game statistics
     play_again = ""
-    if player["wins"] >= 2:     # checks who won best out of 3
+    if player["wins"] >= 2:     # check who won best out of 3
         print "%s win best out of 3" % (player["name"])
     elif player["lose"] >= 2:
         print "%s lost best out of 3" % (player["name"])
-    elif win_state == 1:    # checks if someone won the current game
+    elif win_state == 1:    # check if someone won the current game
         print "%s wins this game!" % (player["name"])
         play_again = str(raw_input("Would you like to play again?"))
     elif win_state == 0 and total_turns == 6:
@@ -87,7 +87,7 @@ def best_out_of(win_state, total_turns=0, player=player_one):
     else:
         exit()
 
-def input_check(ship_row, ship_col, player, board, win_state):  # check if the players guesses match the ship points
+def input_check(ship_row, ship_col, player, board, win_state):  # check/handle the players guesses of the ship points
     while True:
         try:
             guess_row = int(raw_input("Guess Row:"))
@@ -106,7 +106,7 @@ def input_check(ship_row, ship_col, player, board, win_state):  # check if the p
             ship_points = start_game(board_large, board_small)
             return ship_points
     elif player == player_two:  # check the current player to then correlate with the correct board size
-        if (guess_row < 0 or guess_row >= 2) or (guess_col < 0 or guess_col >= 2):
+        if (guess_row < 0 or guess_row > 3) or (guess_col < 0 or guess_col > 3):
             print "Oops, that's not even in the ocean."
         elif board[guess_row - 1][guess_col - 1] == "X":
             print "You guessed that one already."
@@ -115,7 +115,7 @@ def input_check(ship_row, ship_col, player, board, win_state):  # check if the p
             board[guess_row - 1][guess_col - 1] = "X"
         show_board(board_large, board_small)
     elif player == player_one:  # check the current player to then correlate with the correct board size
-        if (guess_row < 0 or guess_row >= 5) or (guess_col < 0 or guess_col >= 5):
+        if (guess_row < 0 or guess_row > 5) or (guess_col < 0 or guess_col > 5):
             print "Oops, that's not even in the ocean."
         elif board[guess_row - 1][guess_col - 1] == "X":
             print "You guessed that one already."
