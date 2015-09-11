@@ -57,10 +57,10 @@ def start_game(board_one, board_two):   # each time the players decides to play 
     ship_row_large = random_row(board_large) - 1
     ship_col_small = random_col(board_small) - 1
     ship_row_small = random_row(board_small) - 1
-    print ship_row_large
-    print ship_col_large
-    print ship_row_small
-    print ship_row_small
+    print "Board one ship column: " + str(ship_row_large)
+    print "Board one ship row: " + str(ship_col_large)
+    print "Board two ship column: " + str(ship_row_small)
+    print "Board two ship row: " + str(ship_row_small)
     return {
         'ship_col_large': ship_col_large,
         'ship_row_large': ship_row_large,
