@@ -19,15 +19,15 @@ player_two = {
 total_turns = 0
 win_state_change = 0
 
-def build_board_large(board):
+def build_board_large(board):   # create a 5 x 5 board
     for item in range(5):
         board.append(["O"] * 5)
 
-def build_board_small(board):
+def build_board_small(board):   # create a 3 x 3 board
     for item in range(3):
         board.append(["O"] * 3)
 
-def show_board(board_one, board_two):
+def show_board(board_one, board_two):   # make the lists look more like a simple battleship graph
     print "Board One"
     for row in board_one:
         print " ".join(row)
@@ -35,15 +35,15 @@ def show_board(board_one, board_two):
     for row in board_two:
         print " ".join(row)
 
-def random_row(board):
+def random_row(board):  # generate the random ship location (in the list keys)
     rand_numb = randint(1, len(board[0]))
     return rand_numb
 
 def random_col(board):
-    rand_numb = randint(1, len(board))
+    rand_numb = randint(1, len(board))  # generate the random ship column (in the outer lists)
     return rand_numb
 
-def start_game(board_one, board_two):
+def start_game(board_one, board_two):   # each time the players decides to play again, start with a fresh slate
     del board_one[:]
     del board_two[:]
     print "Let's play Battleship!"
@@ -61,9 +61,9 @@ def start_game(board_one, board_two):
     print ship_row_small
     return {'ship_col_large': ship_col_large, 'ship_row_large': ship_row_large, 'ship_col_small': ship_col_small, 'ship_row_small': ship_row_small}
 
-ship_points = start_game(board_large, board_small)
+ship_points = start_game(board_large, board_small)   # assign the new ship locations to the new dictionary "ship_points"
 
-def best_out_of(win_state, total_turns=0, player=player_one):
+def best_out_of(win_state, total_turns=0, player=player_one):  # calculates if and who won the current game & best out of 3
     play_again = ""
     if player["wins"] >= 2:
         print "%s win best out of 3" % (player["name"])
@@ -81,7 +81,7 @@ def best_out_of(win_state, total_turns=0, player=player_one):
     else:
         exit()
 
-def input_check(ship_row, ship_col, player, board, win_state):
+def input_check(ship_row, ship_col, player, board, win_state):  # check if the players guesses match the ship points
     while True:
         try:
             guess_row = int(raw_input("Guess Row:"))
@@ -99,7 +99,7 @@ def input_check(ship_row, ship_col, player, board, win_state):
         if best_out_of(win_state) == "yes":
             ship_points = start_game(board_large, board_small)
             return ship_points
-    elif player == player_two:  # check the current player to correlate with the correct board size
+    elif player == player_two:  # check the current player to then correlate with the correct board size
         if (guess_row < 0 or guess_row >= 2) or (guess_col < 0 or guess_col >= 2):
             print "Oops, that's not even in the ocean."
         elif board[guess_row - 1][guess_col - 1] == "X":
@@ -108,7 +108,7 @@ def input_check(ship_row, ship_col, player, board, win_state):
             print "You missed my battleship!"
             board[guess_row - 1][guess_col - 1] = "X"
         show_board(board_large, board_small)
-    elif player == player_one:  # check the current player to correlate with the correct board size
+    elif player == player_one:  # check the current player to then correlate with the correct board size
         if (guess_row < 0 or guess_row >= 5) or (guess_col < 0 or guess_col >= 5):
             print "Oops, that's not even in the ocean."
         elif board[guess_row - 1][guess_col - 1] == "X":
