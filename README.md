@@ -6,6 +6,7 @@ Here you will find various projects that are created for the purposes of practic
       <li><strong>Features added:</strong></li>
       <li>Multiplayer</li>
       <li>Basic Statistics (rematches, best out of 3)</lis>
-      <li>Multiple boards of different size</li>
+      <li>Multiple battleship boards</li>
+      <li>Battleship boards of different sizes</li>
     </ul>
 </ul>
