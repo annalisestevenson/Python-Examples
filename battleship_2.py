@@ -144,10 +144,15 @@ for games in range(3):
             input_check(
                 ship_points['ship_row_large'],
                 ship_points['ship_col_large'],
-                player_one, board_large, win_state_change)
+                player_one, board_large, win_state_change
+            )
         elif player_turns(total_turns) == player_two:
             print "It's player Two's turn"
-            input_check(ship_points['ship_row_small'], ship_points['ship_col_small'], player_two, board_small, win_state_change)
+            input_check(
+                ship_points['ship_row_small'],
+                ship_points['ship_col_small'],
+                player_two, board_small, win_state_change
+            )
         if total_turns == 6:
             if best_out_of(win_state_change, total_turns) == "yes":
                 ship_points = start_game(board_large, board_small)
