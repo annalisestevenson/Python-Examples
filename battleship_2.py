@@ -1,5 +1,4 @@
-""" A somewhat odd and primitive game of battleship that expands upon the battleship game as demonstrated in
-    Codeacademy's Python lesson 19/19
+""" A somewhat odd and primitive game of battleship that expands upon the battleship game as demonstrated in Codeacademy's Python lesson 19/19
 """
 
 
@@ -60,22 +59,17 @@ def start_game(board_one, board_two):   # each time the players decides to play 
     print ship_col_large
     print ship_row_small
     print ship_row_small
-    return {
-        'ship_col_large': ship_col_large,
-        'ship_row_large': ship_row_large,
-        'ship_col_small': ship_col_small,
-        'ship_row_small': ship_row_small
-    }
+    return {'ship_col_large': ship_col_large, 'ship_row_large': ship_row_large, 'ship_col_small': ship_col_small, 'ship_row_small': ship_row_small}
 
 ship_points = start_game(board_large, board_small)   # assign the new ship locations to the new dictionary "ship_points"
 
-def best_out_of(win_state, total_turns=0, player=player_one):
+def best_out_of(win_state, total_turns=0, player=player_one):  # calculates if and who won the current game & best out of 3
     play_again = ""
-    if player["wins"] >= 2:     # checks who won best out of 3
+    if player["wins"] >= 2:
         print "%s win best out of 3" % (player["name"])
     elif player["lose"] >= 2:
         print "%s lost best out of 3" % (player["name"])
-    elif win_state == 1:    # checks if someone won the current game
+    elif win_state == 1:
         print "%s wins this game!" % (player["name"])
         play_again = str(raw_input("Would you like to play again?"))
     elif win_state == 0 and total_turns == 6:
@@ -141,10 +135,7 @@ for games in range(3):
         total_turns += 1
         if player_turns(total_turns) == player_one:
             print "It's player Ones's turn"
-            input_check(
-                ship_points['ship_row_large'],
-                ship_points['ship_col_large'],
-                player_one, board_large, win_state_change)
+            input_check(ship_points['ship_row_large'], ship_points['ship_col_large'], player_one, board_large, win_state_change)
         elif player_turns(total_turns) == player_two:
             print "It's player Two's turn"
             input_check(ship_points['ship_row_small'], ship_points['ship_col_small'], player_two, board_small, win_state_change)
