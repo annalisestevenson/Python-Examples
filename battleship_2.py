@@ -1,3 +1,4 @@
+__author__ = 'Shawn Daniel'
 """ A somewhat odd and primitive game of battleship that expands upon the battleship game as demonstrated in
     Codeacademy's Python lesson 19/19
 """
