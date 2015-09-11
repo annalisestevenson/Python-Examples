@@ -69,10 +69,18 @@ def start_game(board_one, board_two):   # each time the players decides to play 
 
 ship_points = start_game(board_large, board_small)  # assign the new ship locations to the new dictionary "ship_points"
 
+def player_turns(total_turns):
+    if total_turns % 2 == 0:  # alternate between player turns by checking for odd numbers
+        player_turn = player_two
+        return player_turn
+    else:
+        player_turn = player_one
+        return player_turn
+
 def best_out_of(win_state, total_turns=0, player=player_one):   # check the game statistics
     play_again = ""
     if player["wins"] >= 2:     # check who won best out of 3
-        print "%s win best out of 3" % (player["name"])
+        print "%s wins best out of 3" % (player["name"])
     elif player["lose"] >= 2:
         print "%s lost best out of 3" % (player["name"])
     elif win_state == 1:    # check if someone won the current game
@@ -125,14 +133,6 @@ def input_check(ship_row, ship_col, player, board, win_state):  # check/handle t
             win_state = 0
         show_board(board_large, board_small)
     return win_state
-
-def player_turns(total_turns):
-    if total_turns % 2 == 0:  # alternate between player turns by checking for odd numbers
-        player_turn = player_two
-        return player_turn
-    else:
-        player_turn = player_one
-        return player_turn
 
 
 for games in range(3):
