@@ -1,7 +1,8 @@
 __author__ = 'Shawn Daniel'
-""" Returns true for integers and numbers with ".0".
-    An unorthodox / alternative solution to a practice problem in Codeacademy's Python course
-    (section: "Practice Makes Perfect", lesson: 3/15)
+""" The goal of the problem is to return true for integers as well as floats with .0
+    This particular solution solves the problem without using the conventional math solution.
+    To read more, check out the practice problem in Codeacademy's Python course section:
+    "Practice Makes Perfect", lesson: 3/15
 
     I call it, "The math idiot solution"    """
 
