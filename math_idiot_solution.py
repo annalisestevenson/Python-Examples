@@ -1,6 +1,8 @@
 __author__ = 'Shawn Daniel'
 """ Returns true for integers and numbers with ".0".
-    An unorthodox / alternative solution to a practice problem in Codeacademy's Python course (section: "Practice Makes Perfect", lesson: 3/15)
+    An unorthodox / alternative solution to a practice problem in Codeacademy's Python course
+    (section: "Practice Makes Perfect", lesson: 3/15)
+
     I call it, "The math idiot solution"    """
 
 float_zero = []
