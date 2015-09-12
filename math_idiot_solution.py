@@ -1,8 +1,7 @@
 __author__ = 'Shawn Daniel'
-# returns true for integers and numbers with ".0".
-# An unorthodox / alternative solution to lesson 3/15 of Codeacademy's Python course
-#
-#     I call it, "The math idiot solution"
+""" Returns true for integers and numbers with ".0".
+    An unorthodox / alternative solution to a practice problem in Codeacademy's Python course (section: "Practice Makes Perfect", lesson: 3/15)
+    I call it, "The math idiot solution"    """
 
 float_zero = []
 
@@ -26,4 +25,4 @@ def is_int(x):
             else:
                 print "False"
 
-is_int(-24.6)   # input numbers here to test the function
+is_int(-2)   # input numbers here to test the function
