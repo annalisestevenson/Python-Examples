@@ -23,9 +23,8 @@ def count_files():
     for folder in folders.keys():
         file_count = len(os.listdir(os.path.join(path, user)))     # for each folder assign the length of each folder
         folders[folder] = file_count    # assign file_count as the (value) to the corresponding folder (key)
-    # iterate through the items in the dictionary and sort them by assigning a new list then sorting their values
-    # (1)=file_count in reverse (descending) order
-    sorted_count = sorted(folders.iteritems(), key=operator.itemgetter(1), reverse=True)
+    sorted_count = sorted(folders.iteritems(), key=operator.itemgetter(1), reverse=True) # iterate through dictionary
+    #  assign items as tuples inside new list "sorted_count", then sorts them by their values in descending order
     for x, y in sorted_count:
         if y > 0:
             print x, y
