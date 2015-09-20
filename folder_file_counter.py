@@ -15,7 +15,8 @@ import operator
 
 
 path = 'C:\\test'
-# create a dictionary with each of the directories located within the "path" variable
+# list all the directories from "path" variable and create a dictionary with each of the folders as the keys
+# and 0 as their default values
 folders = {key: 0 for key in os.listdir(path) if os.path.isdir(os.path.join(path, key))}
 
 def count_files():
