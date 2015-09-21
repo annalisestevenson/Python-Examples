@@ -2,12 +2,10 @@ __author__ = 'Shawn Daniel'
 """
     This simple script counts the number of files within all the directories
 that are located within a given path. Then it sorts the number of files
-per folder by descending order.
+per folder by descending order. More capabilities are planning to be added
 
 I made this for some server software although it can be generally
-useful, as well as a good example for beginner programmers. It shows how
-you can use list comprehensions, converting / sorting dictionaries as
-lists, and examples on how to begin using the os, and operator modules.
+useful, as well as a good example for beginner programmers.
 """
 
 import os
