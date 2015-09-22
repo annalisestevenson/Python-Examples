@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="18cb6f6c-b933-4ba1-9686-222cf844ca8d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/folder_file_counter.py" afterPath="$PROJECT_DIR$/folder_file_counter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Examples.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,10 +46,10 @@
       <file leaf-file-name="folder_file_counter.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/folder_file_counter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72085387">
-              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.111658454">
+              <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
               <folding>
-                <element signature="e#429#438#0" expanded="true" />
+                <element signature="e#420#429#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -88,8 +87,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="478" />
-    <option name="y" value="36" />
+    <option name="x" value="524" />
+    <option name="y" value="27" />
     <option name="width" value="1135" />
     <option name="height" value="995" />
   </component>
@@ -412,7 +411,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="478" y="36" width="1135" height="995" extended-state="0" />
+    <frame x="524" y="27" width="1135" height="995" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21148588" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -478,7 +477,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#429#438#0" expanded="true" />
+            <element signature="e#420#429#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -496,7 +495,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#429#438#0" expanded="true" />
+            <element signature="e#420#429#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -514,7 +513,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#429#438#0" expanded="true" />
+            <element signature="e#420#429#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -638,10 +637,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/folder_file_counter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72085387">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.111658454">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
           <folding>
-            <element signature="e#429#438#0" expanded="true" />
+            <element signature="e#420#429#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -2,7 +2,7 @@ __author__ = 'Shawn Daniel'
 """
     This simple script counts the number of files within all the directories
 that are located within a given path. Then it sorts the number of files
-per folder by descending order. More capabilities are planning to be added
+per folder by descending order and prints the age of each folder.
 
 Initially decided to write this for some server software although, it is a good example
 for python beginners and can be generally useful when more capabilities added.
@@ -19,6 +19,7 @@ folders = {key: 0 for key in os.listdir(path) if os.path.isdir(os.path.join(path
 
 
 def count_files():
+    """prints the number of files within each directory then the age of the directory itself"""
     for folder in folders.keys():   # for each folder count the length of it
         file_count = len(os.listdir(os.path.join(path, folder)))
         current_date = time.localtime()
