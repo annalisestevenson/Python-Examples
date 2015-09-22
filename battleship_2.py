@@ -22,17 +22,20 @@ total_turns = 0
 win_state_change = 0
 
 
-def build_board_large(board):   # create a 5 x 5 board
+def build_board_large(board):
+    """create a 5 x 5 board"""
     for item in range(5):
         board.append(["O"] * 5)
 
 
 def build_board_small(board):   # create a 3 x 3 board
+    """create a 3 x 3 board"""
     for item in range(3):
         board.append(["O"] * 3)
 
 
-def show_board(board_one, board_two):   # make the lists look more like a simple battleship graph
+def show_board(board_one, board_two):
+    """make the lists look more like a simple battleship graph"""
     print "Board One"
     for row in board_one:
         print " ".join(row)
@@ -41,7 +44,8 @@ def show_board(board_one, board_two):   # make the lists look more like a simple
         print " ".join(row)
 
 
-def start_game(board_one, board_two):   # each time the players decides to play again, start again from a fresh slate
+def load_game(board_one, board_two):
+    """each time the players decides to play again, start again from a fresh slate"""
     print "Let's play Battleship!"
     print "Turn 1"
     del board_one[:]
@@ -64,41 +68,53 @@ def start_game(board_one, board_two):   # each time the players decides to play 
         'ship_row_small': ship_row_small
     }
 
-ship_points = start_game(board_large, board_small)  # assign the new ship locations to the new dictionary
+ship_points = load_game(board_large, board_small)  # assign the new ship locations to the new dictionary
 
 
 def player_turns():
-    if total_turns % 2 == 0:  # alternate between player turns by checking for odd numbers
+    """alternate between player turns by checking for odd numbers"""
+    if total_turns % 2 == 0:
         return player_two
     else:
         return player_one
 
 
-def best_out_of(win_state, player):   # check the game statistics
-    play_again = ""
-    if win_state == 1 and player["wins"] < 2:  # check if player one the current game
+def play_again():
+    """if user wants to play again, restart / reload game"""
+    global total_turns
+    global ship_points
+    answer = str(raw_input("Would you like to play again?"))
+    if answer == "yes":
+        total_turns = 0    # reset / start over from player one again
+        show_board(board_large, board_small)
+        ship_points = load_game(board_large, board_small)
+    else:
+        exit()
+
+
+def best_out_of(win_state, player):
+    """check the game statistics"""
+    global total_turns
+    if win_state == 1 and player["wins"] < 2:  # only do a check if player one the current game
         print "%s wins this game!" % (player["name"])
-        play_again = str(raw_input("Would you like to play again?"))
-        if play_again == "yes":
-            return play_again
-        else:
-            exit()
+        play_again()
     elif win_state == 0 and total_turns == 6:
-        play_again = str(raw_input("This match was a draw. Would you like to play again? "))
+        print "This match was a draw"
+        play_again()
     elif win_state != 0 and total_turns == 6:
-        play_again = str(raw_input("Would you like to play again?"))
+        play_again()
     elif player["wins"] >= 2:     # check who won best out of 3
         print "%s wins best out of 3" % (player["name"])
+        play_again()
     elif player["lose"] >= 2:
         print "%s lost best out of 3" % (player["name"])
+        play_again()
     else:
-        return play_again
-    return play_again
+        play_again()
 
 
-def input_check(ship_row, ship_col, player, board):  # check/handle the players guesses of the ship points
-    global ship_points
-    global total_turns
+def input_check(ship_row, ship_col, player, board):
+    """check/handle the players guesses of the ship points"""
     global win_state_change
     guess_col = 0
     guess_row = 0
@@ -114,13 +130,12 @@ def input_check(ship_row, ship_col, player, board):  # check/handle the players 
     match = guess_row == ship_row - 1 and guess_col == ship_col - 1
     not_on_small_board = (guess_row < 0 or guess_row > 2) or (guess_col < 0 or guess_col > 2)
     not_on_large_board = (guess_row < 0 or guess_row > 4) or (guess_col < 0 or guess_col > 4)
+
     if match:
         win_state_change = 1  # notes that someone has won the current game
-        player["wins"] += 1  # add a win to the current player
+        player["wins"] += 1
         print "Congratulations! You sunk my battleship!"
-        if best_out_of(win_state_change, player) == "yes":
-            total_turns = 0    # reset / start over from player one again
-            ship_points = start_game(board_large, board_small)
+        best_out_of(win_state_change, player)
     elif not match and player == player_two:  # check the current player to then correlate with the correct board size
         if not_on_small_board:
             print "Oops, that's not even in the ocean."
@@ -131,7 +146,7 @@ def input_check(ship_row, ship_col, player, board):  # check/handle the players 
             board[guess_row][guess_col] = "X"
         win_state_change = 0
         show_board(board_large, board_small)
-    elif not match and player == player_one:  # check the current player to then correlate with the correct board size
+    elif not match and player == player_one:
         if not_on_large_board:
             print "Oops, that's not even in the ocean."
         elif board[guess_row][guess_col] == "X":
@@ -144,7 +159,7 @@ def input_check(ship_row, ship_col, player, board):  # check/handle the players 
     else:
         return win_state_change
 
-
+"""Start the game logic"""
 for games in range(3):
     games += 1  # 3 games total
     for turns in range(6):  # 6 turns total = 3 turns for each player
@@ -166,17 +181,9 @@ for games in range(3):
         else:
             break
         if total_turns == 6 and player_turns() == player_one:
-            if best_out_of(win_state_change, player_one) == "yes":  # check if player wants to play again
-                ship_points = {}
-                ship_points = start_game(board_large, board_small)
-                continue
+            best_out_of(win_state_change, player_one)
         elif total_turns == 6 and player_turns() == player_two:
-            if best_out_of(win_state_change, player_two) == "yes":
-                ship_points = {}
-                ship_points = start_game(board_large, board_small)
-                continue
-        elif total_turns == 6 and best_out_of(win_state_change, player_two) != "yes":
-            break
+            best_out_of(win_state_change, player_two)
         else:
             continue
     if games == 3:
