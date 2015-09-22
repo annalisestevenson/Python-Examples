@@ -20,19 +20,12 @@ print "Let's play Battleship!"
 print "1"
 print_board(board)
 
-def check_rand(number):
-    if number < 0:
-        number += 1
-    else:
-        return number
 # generate a random number between 0 and the length of the boards outer lists (0-5 = 6 actual numbers in computer terms) so therefore we must subtract one so that the output will actually count 5, in computer terms (0-1-2-3-4 = 5) thus generating a random row number that fits on teh board
 def random_row(board):
     rand_number = randint(0, len(board) - 1)
-    return check_rand(rand_number)
 # generate a random number between 0 and the length of the boards inner listed elements len(board[0])
 def random_col(board):
     rand_number = randint(0, len(board[0]) - 1)
-    return check_rand(rand_number)
 #6
 # assign the ship_row variable a random row of the board list using the random_row function
 ship_row = random_row(board)
@@ -45,12 +38,8 @@ print ship_col
 for turn in range(4):
     turn = turn + 1
     #store the users first and second numbers as an integers
-    try:
-        guess_row = int(raw_input("Guess Row:"))
-        guess_col = int(raw_input("Guess Col:"))
-    except ValueError:
-        print "Enter a number only."
-        continue
+    guess_row = int(raw_input("Guess Row:"))
+    guess_col = int(raw_input("Guess Col:"))
     #compare the users numbers with the random numbers that were previously generated, if it's the same, they win, then close the app.
     if guess_row == ship_row and guess_col == ship_col:
         print "Congratulations! You sunk my battleship!"
