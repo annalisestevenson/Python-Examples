@@ -4,8 +4,8 @@ __author__ = 'Shawn Daniel'
 that are located within a given path. Then it sorts the number of files
 per folder by descending order. More capabilities are planning to be added
 
-Initially started writing this for some server software although it can be generally
-useful when more capabilities added. Also a good example for beginner programmers.
+Initially decided to write this for some server software although, it is a good example
+for python beginners and can be generally useful when more capabilities added.
 """
 
 import os
@@ -21,7 +21,7 @@ def count_files():
     for folder in folders.keys():   # for each folder count the length of it
         file_count = len(os.listdir(os.path.join(path, folder)))
         folders[folder] = file_count
-# iterate through items as tuples inside new list, then sort them by their values in descending order
+# return copy of items as tuples inside new list, then sort them by their values in descending order
     sorted_count = sorted(folders.items(), key=(lambda x: x[1]), reverse=True)
 # if file count > 0, print each folder with it's count number on each line
     for x, y in sorted_count:
