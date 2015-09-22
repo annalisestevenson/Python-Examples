@@ -5,18 +5,19 @@
 from random import randint
 
 board = []
-#1 append the list item: ["O"] 5 times in 5 lists
+#1
+# append the list item: ["O"] 5 times in 5 lists
 for x in range(5):
     board.append(["O"] * 5)
-
-#2 for each of the outer lists in "board" list, present the list elements separated by spaces
+#2
+# for each list that is within the outer list (board), present the list elements seperated by spaces
 def print_board(board):
     for row in board:
         print " ".join(row)
-
+#3
+# print the board using the print_board function
 print "Let's play Battleship!"
 print "1"
-#3 print the board using the print_board function
 print_board(board)
 
 def check_rand(number):
@@ -32,13 +33,15 @@ def random_row(board):
 def random_col(board):
     rand_number = randint(0, len(board[0]) - 1)
     return check_rand(rand_number)
-#6 assign the ship_row variable a random row of the board list using the random_row function
+#6
+# assign the ship_row variable a random row of the board list using the random_row function
 ship_row = random_row(board)
 ship_col = random_col(board)
 print ship_row
 print ship_col
 
-#7 give the user a range of 4 turns and start counting the turns each time the for loop runs
+#7
+# give the user a range of 4 turns and start counting the turns each time the for loop runs
 for turn in range(4):
     turn = turn + 1
     #store the users first and second numbers as an integers
