@@ -12,14 +12,14 @@ import os
 from sys import argv
 import time
 
-script, path = argv
-# path = 'C:\\Users\\PianoMonk\\Downloads'
+# script, path = argv
+path = 'C:\\Users\\PianoMonk\\Downloads'
 folders = {key: 0 for key in os.listdir(path) if os.path.isdir(os.path.join(path, key))}
 
 
 def count_files():
     """prints the number of files within each directory then the age of the directory itself"""
-    for folder in folders.keys():   # for each folder count the length of it
+    for folder in folders.keys():
         file_count = len(os.listdir(os.path.join(path, folder)))
         current_date = time.localtime()
         folder_date = time.localtime(os.stat(os.path.join(path, folder)).st_ctime)
@@ -36,12 +36,12 @@ def count_files():
             elif day < 0:
                 month -= 1
                 day += 30
-        duration_formatted = "%d Years, %d Months, and %d days old" % (year, month, day)
+        duration_formatted = "%d Years, %d Months, %d days" % (year, month, day)
         folders[folder] = file_count, duration_formatted
     sorted_count = sorted(folders.items(), key=(lambda x: x[1]), reverse=True)
     for x, y in sorted_count:
         if y[0] > 0:
-            print "{:<20} {:^20} {:>10}".format(x, y[0], y[1])
+            print "{:<35} {:^10} {:>5}".format(x, y[0], y[1])
         else:
             pass
 
