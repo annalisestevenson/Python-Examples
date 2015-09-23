@@ -40,7 +40,6 @@ def count_files():
                 day += 30
         duration_formatted = "%d Years, %d Months, %d days" % (year, month, day)
         folders[folder] = file_count, duration_formatted
-
     sorted_count = sorted(folders.items(), key=(lambda x: x[1]), reverse=True)
     for x, y in sorted_count:
         if y[0] > 0:
