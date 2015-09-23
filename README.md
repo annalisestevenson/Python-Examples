@@ -10,4 +10,14 @@ This game expands upon the "Lists and Functions" section of the <a href="https:/
       <li>Multiple battleship boards</li>
       <li>Battleship boards of different sizes</li>
     </ul>
+    <h6>
+  <li><h2>File Folder Tracker</h2>
+This simple script counts the number of files within all the directories that are located within a given path. Then it sorts the number of files / folder by file count in descending order and prints the age of each folder.</li>
+    <h6>Features:</h6>
+    <ul>
+      <li>Calculates how old the folder is from when it was created to the current local time</li>
+      <li>finds and lists all directories within a given path if the file count within them are above 0</lis>
+      <li>readable output formatting</li>
+    </ul>
+    <h6>
 </ul>
