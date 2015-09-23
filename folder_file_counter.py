@@ -12,8 +12,7 @@ import os
 from sys import argv
 import time
 
-# script, path = argv
-path = 'C:\\Users\\PianoMonk\\Downloads'
+script, path = argv
 folders = {key: 0 for key in os.listdir(path) if os.path.isdir(os.path.join(path, key))}
 
 
