@@ -13,9 +13,8 @@ from sys import argv
 import time
 
 script, path = argv
-# path = 'C:\\test'
-# list all directories within "path" variable and create a dict with each of them as the keys and 0 as their value
-folders = {key: 0 for key in os.listdir(path) if os.path.isdir(os.path.join(path, key))}   
+# path = 'C:\\Users\\PianoMonk\\Downloads'
+folders = {key: 0 for key in os.listdir(path) if os.path.isdir(os.path.join(path, key))}
 
 
 def count_files():
@@ -27,15 +26,23 @@ def count_files():
         month = current_date[1] - folder_date[1]
         day = current_date[2] - folder_date[2]
         year = current_date[0] - folder_date[0]
-        duration_formatted = "%d/%d/%d" % (month, day, year)
+        while month < 0 or day < 0 or year < 0:
+            if year < 0:
+                year -= 1
+                month += 12
+            elif month < 0:
+                year -= 1
+                month += 12
+            elif day < 0:
+                month -= 1
+                day += 30
+        duration_formatted = "%d Years, %d Months, and %d days old" % (year, month, day)
         folders[folder] = file_count, duration_formatted
-# return copy of items as tuples inside new list, then sort them by their values in descending order
     sorted_count = sorted(folders.items(), key=(lambda x: x[1]), reverse=True)
-# if file count > 0, print each folder with it's count number on each line
     for x, y in sorted_count:
         if y[0] > 0:
-            print "%s ---- %s ---- %s" % (x, y[0], y[1])
+            print "{:<20} {:^20} {:>10}".format(x, y[0], y[1])
         else:
-            continue
+            pass
 
 count_files()
