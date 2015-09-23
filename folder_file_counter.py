@@ -28,7 +28,7 @@ def count_files():
         year = current_date[0] - folder_date[0]
         while month < 0 or day < 0 or year < 0:
             if year < 0:
-                year -= 1
+                year = 0
                 month += 12
             elif month < 0:
                 year -= 1
