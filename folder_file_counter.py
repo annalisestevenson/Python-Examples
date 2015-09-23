@@ -12,6 +12,7 @@ import os
 from sys import argv
 import time
 
+# path = "C:\\test"
 script, path = argv
 folders = {key: 0 for key in os.listdir(path) if os.path.isdir(os.path.join(path, key))}
 
@@ -29,8 +30,8 @@ def count_files():
 
         while month < 0 or day < 0 or year < 0:
             if year < 0:
-                year = 0
-                month += 12
+                year += 1
+                month -= 12
             elif month < 0:
                 year -= 1
                 month += 12
