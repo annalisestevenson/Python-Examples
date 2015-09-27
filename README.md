@@ -18,5 +18,6 @@ This simple script counts the number of files within all the directories that ar
       <li>finds and lists all directories within a given path if the number of files within them are above 0</lis>
       <li>readable output formatting</li>
     </ul>
-    <h6>
+     <li><h2>Find and Copy Files</h2>
+This simple script is a great example on why Python is such an elegant language. In just roughly 4 lines of code, A drive or path will be searched and whenever it finds a file containing the specified file extension (in this case .doc) it will copy it to the relative folder.</li>
 </ul>
