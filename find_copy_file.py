@@ -1,7 +1,7 @@
 __author__ = 'Shawn Daniel'
 """
 This code speaks for itself and demonstrates why I love Python.
-In roughly 4 lines of code it finds and downloads all files with
+In roughly 4 lines of code it finds and copies all files with
 said extension.
  """
 
