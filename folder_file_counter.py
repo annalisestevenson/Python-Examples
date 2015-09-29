@@ -1,24 +1,25 @@
 __author__ = 'Shawn Daniel'
 """
 Initially decided to write this for some server software although, it is a good example
-for python beginners and can be generally useful when more capabilities added.
+for python beginners and can be generally useful with more capabilities added.
 """
 
 import shelve
 import os
-# from sys import argv
+from sys import argv
 import time
 
-path = "C:\\test"
-# script, path = argv
+
+# path = "C:\\test"
+script, path = argv
 folders = {key: 0 for key in os.listdir(path) if os.path.isdir(os.path.join(path, key))}
 
-# create a storage file for purposes of tracking future changes
+# create a storage file for purposes of tracking future changes to file count
 tracker = shelve.open('tracker')
 
 
 def calc_age(folder_date):
-    """Calculates age by subtracting the date of creation with the current local date"""
+    """Calculates age by subtracting the date of creation with the current local date then formats result"""
     current_date = time.localtime()
     month = current_date[1] - folder_date[1]
     day = current_date[2] - folder_date[2]
@@ -42,7 +43,7 @@ def count_files():
         folder_date = time.localtime(os.stat(os.path.join(path, folder)).st_ctime)
         month, day, year = calc_age(folder_date)
         file_count = len(os.listdir(os.path.join(path, folder)))
-        if tracker.has_key(folder):
+        if folder in tracker:
             new_changes = file_count - tracker[folder][0]
         else:
             new_changes = file_count
@@ -50,12 +51,12 @@ def count_files():
         tracker[folder] = file_count, new_changes, duration_formatted
 
     # sort the items in 'folders' dict by file count in descending order
-    sorted_count = sorted(tracker.items(), key=(lambda x: x[1]), reverse=True)
-    # format the output
+    sorted_count = sorted(tracker.items(), key=lambda x: x[1], reverse=True)
+    # format and print the dictionary values
     for x, y in sorted_count:
         if y[0] > 0:
-            output = "{:<35} File Count: {:^10} Newly Counted: {:^10} {:>5}".format(
-                x, y[0], y[1], y[2])
+            output = "{:<35} {:^10} {} {:>15} {} {:>10} {}".format(
+                x, 'File Count:', y[0], 'New Count:', y[1], 'Age:', y[2])
             print output
         else:
             pass
