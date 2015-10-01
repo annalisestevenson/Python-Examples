@@ -9,7 +9,7 @@ This battleship game expands upon the "Lists and Functions" section of the <a hr
       <li>Basic Statistics (current game wins/loses, rematches, best out of 3)</lis>
       <li>Multiple battleship boards</li>
       <li>Battleship boards of different sizes</li>
-      <li>("Battleship3" folder / version) Added class structure to allow for unlimited players and boards</li>
+      <li>("Battleship3" version folder) Added class structure for cleaner code and to allow for unlimited players / boards</li>
     </ul>
   <li><h2>Folder file Count Tracker</h2>
 This simple script counts the number of files within all the directories that are located within a given path. Then it sorts the number of files / folder by file count in descending order and calculates the age of each folder.</li>
