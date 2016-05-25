@@ -1,6 +1,7 @@
 __author__ = 'Shawn Daniel'
 
 import battleship
+import sys
 
 
 board_small = []
@@ -49,7 +50,7 @@ def play_again():
         total_turns = 0    # reset / start over from player one again
         ship_points = load_game()
     else:
-        exit()
+        sys.exit()
 
 
 def best_out_of(win_state, player):
@@ -57,21 +58,15 @@ def best_out_of(win_state, player):
     global total_turns
     if win_state == 1 and player.wins < 2:  # only do a check if player one the current game
         print "%s wins this game!" % player.name
-        play_again()
     elif total_turns == 6:
         if win_state != 0:
             print "This match was a draw"
-            play_again()
-        else:
-            play_again()
     elif player.wins >= 2:     # check who won best out of 3
         print "%s wins best out of 3" % player.name
-        play_again()
     elif player.loses >= 2:
         print "%s lost best out of 3" % player.name
-        play_again()
-    else:
-        play_again()
+
+    play_again()
 
 
 def input_check(ship_row, ship_col, player, board, board_size):
@@ -96,18 +91,16 @@ def input_check(ship_row, ship_col, player, board, board_size):
         player.wins += 1
         print "Congratulations! You sunk my battleship!"
         best_out_of(win_state_change, player)
-        map(lambda x: x.show_board(), all_boards)
     elif not_on_board:
         print "Oops, that's not even in the ocean."
-        map(lambda x: x.show_board(), all_boards)
     elif board[guess_row][guess_col] == "X":
         print "You guessed that one already."
-        map(lambda x: x.show_board(), all_boards)
     else:
         print "You missed my battleship!"
         board[guess_row][guess_col] = "X"
         win_state_change = 0
-        map(lambda x: x.show_board(), all_boards)
+
+    map(lambda x: x.show_board(), all_boards)
     return win_state_change
 
 

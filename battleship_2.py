@@ -1,10 +1,10 @@
-__author__ = 'Shawn Daniel'
+__author__ = 'Shawn'
 """ A somewhat odd and primitive game of battleship that expands upon the battleship game as demonstrated in
     Codeacademy's Python lesson 19/19
 """
-
-
 from random import randint
+import sys
+
 
 board_large = []
 board_small = []
@@ -24,13 +24,13 @@ win_state_change = 0
 
 def build_board_large(board):
     """create a 5 x 5 board"""
-    for item in range(5):
+    for _ in range(5):
         board.append(["O"] * 5)
 
 
 def build_board_small(board):   # create a 3 x 3 board
     """create a 3 x 3 board"""
-    for item in range(3):
+    for _ in range(3):
         board.append(["O"] * 3)
 
 
@@ -46,21 +46,22 @@ def show_board(board_one, board_two):
 
 def load_game(board_one, board_two):
     """each time the players decides to play again, start again from a fresh slate"""
-    print "Let's play Battleship!"
-    print "Turn 1"
+    print "Let's play Battleship!\nTurn 1"
     del board_one[:]
     del board_two[:]
+
     build_board_large(board_one)
     build_board_small(board_two)
     show_board(board_one, board_two)
-    ship_col_large = (lambda x: randint(1, len(x)))(board_one)
-    ship_row_large = (lambda x: randint(1, len(x[0])))(board_one)
-    ship_col_small = (lambda x: randint(1, len(x)))(board_two)
-    ship_row_small = (lambda x: randint(1, len(x[0])))(board_two)
-    print "Board 1 ship column: " + str(ship_row_large)
-    print "Board 1 ship row: " + str(ship_col_large)
-    print "Board 2 ship column: " + str(ship_row_small)
-    print "Board 2 ship row: " + str(ship_col_small)
+    ship_col_large = randint(1, len(board_one))
+    ship_row_large = randint(1, len(board_one[0]))
+    ship_col_small = randint(1, len(board_two))
+    ship_row_small = randint(1, len(board_two[0]))
+
+    print "Board 1 ship column: " + str(ship_row_large) + '\n' \
+          + "Board 1 ship row: " + str(ship_col_large) + '\n' \
+          + "Board 2 ship column: " + str(ship_row_small) + '\n'\
+          + "Board 2 ship row: " + str(ship_col_small) + '\n'
     return {
         'ship_col_large': ship_col_large,
         'ship_row_large': ship_row_large,
@@ -89,28 +90,23 @@ def play_again():
         show_board(board_large, board_small)
         ship_points = load_game(board_large, board_small)
     else:
-        exit()
+        sys.exit()
 
 
 def best_out_of(win_state, player):
     """check the game statistics"""
     global total_turns
+
     if win_state == 1 and player["wins"] < 2:  # only do a check if player one the current game
         print "%s wins this game!" % (player["name"])
-        play_again()
     elif win_state == 0 and total_turns == 6:
         print "This match was a draw"
-        play_again()
-    elif win_state != 0 and total_turns == 6:
-        play_again()
     elif player["wins"] >= 2:     # check who won best out of 3
         print "%s wins best out of 3" % (player["name"])
-        play_again()
     elif player["lose"] >= 2:
         print "%s lost best out of 3" % (player["name"])
-        play_again()
-    else:
-        play_again()
+
+    play_again()
 
 
 def input_check(ship_row, ship_col, player, board):
@@ -118,6 +114,7 @@ def input_check(ship_row, ship_col, player, board):
     global win_state_change
     guess_col = 0
     guess_row = 0
+
     while True:
         try:
             guess_row = int(raw_input("Guess Row:")) - 1
@@ -131,33 +128,32 @@ def input_check(ship_row, ship_col, player, board):
     not_on_small_board = (guess_row < 0 or guess_row > 2) or (guess_col < 0 or guess_col > 2)
     not_on_large_board = (guess_row < 0 or guess_row > 4) or (guess_col < 0 or guess_col > 4)
 
+    def missed_output():
+        print "Oops, that's not even in the ocean."
+        if board[guess_row][guess_col] == "X":
+            print "You guessed that one already."
+        else:
+            print "You missed my battleship!"
+            board[guess_row][guess_col] = "X"
+
     if match:
         win_state_change = 1  # notes that someone has won the current game
         player["wins"] += 1
         print "Congratulations! You sunk my battleship!"
         best_out_of(win_state_change, player)
-    elif not match and player == player_two:  # check the current player to then correlate with the correct board size
+    if not match and player == player_two:  # check the current player to then correlate with the correct board size
         if not_on_small_board:
-            print "Oops, that's not even in the ocean."
-        elif board[guess_row][guess_col] == "X":
-            print "You guessed that one already."
-        else:
-            print "You missed my battleship!"
-            board[guess_row][guess_col] = "X"
-        win_state_change = 0
-        show_board(board_large, board_small)
+            missed_output()
+            win_state_change = 0
+            show_board(board_large, board_small)
     elif not match and player == player_one:
         if not_on_large_board:
-            print "Oops, that's not even in the ocean."
-        elif board[guess_row][guess_col] == "X":
-            print "You guessed that one already."
-        else:
-            print "You missed my battleship!"
-            board[guess_row][guess_col] = "X"
-        win_state_change = 0
-        show_board(board_large, board_small)
+            missed_output()
+            win_state_change = 0
+            show_board(board_large, board_small)
     else:
         return win_state_change
+
 
 """Start the game logic"""
 for games in range(3):
